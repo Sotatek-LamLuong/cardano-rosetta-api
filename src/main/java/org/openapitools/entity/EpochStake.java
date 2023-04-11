@@ -1,0 +1,41 @@
+package org.openapitools.entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "epoch_stake")
+public class EpochStake {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
+
+    @NotNull
+    @Column(name = "addr_id", nullable = false)
+    private Long addrId;
+
+    @NotNull
+    @Column(name = "pool_id", nullable = false)
+    private Long poolId;
+
+/*
+    TODO [JPA Buddy] create field to map the 'amount' column
+     Available actions: Define target Java type | Uncomment as is | Remove column mapping
+    @Column(name = "amount", columnDefinition = "lovelace(20) not null")
+    private Object amount;
+*/
+/*
+    TODO [JPA Buddy] create field to map the 'epoch_no' column
+     Available actions: Define target Java type | Uncomment as is | Remove column mapping
+    @Column(name = "epoch_no", columnDefinition = "word31type(10) not null")
+    private Object epochNo;
+*/
+}

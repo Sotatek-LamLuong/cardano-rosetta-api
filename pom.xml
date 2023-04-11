@@ -6,12 +6,14 @@
     <name>openapi-spring</name>
     <version>1.4.10</version>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springdoc.version>1.6.14</springdoc.version>
         <swagger-ui.version>4.15.5</swagger-ui.version>
+        <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <org.projectlombok.version>1.18.24</org.projectlombok.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,6 +27,35 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${org.mapstruct.version}</version>
+                        </path>
+
+                        <!-- other annotation processors -->
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -45,10 +76,10 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-postgresql</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.flywaydb</groupId>-->
+        <!--            <artifactId>flyway-postgresql</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
@@ -60,11 +91,19 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${org.mapstruct.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
         </dependency>
-          <!--SpringDoc dependencies -->
+
+        <!--SpringDoc dependencies -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -102,6 +141,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.bloxbean.cardano</groupId>
+            <artifactId>cardano-client-lib</artifactId>
+            <version>0.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bloxbean.cardano</groupId>
+            <artifactId>cardano-client-backend-blockfrost</artifactId>
+            <version>0.4.3</version>
         </dependency>
 
 

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JpaBuddyIdeaProjectConfig">
+  <component name="JpaBuddyIdeaProjectConfig" newRepositoryParent="org.springframework.data.jpa.repository.JpaRepository">
+    <option name="defaultUnitInitialized" value="true" />
     <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="66dfac32-f900-4161-90cf-00fefb4685f4" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/org/openapitools/entity" />
+    <reUseDbSnapshotConnections>
+      <dbConnection id="66dfac32-f900-4161-90cf-00fefb4685f4" />
+    </reUseDbSnapshotConnections>
+    <option name="reIgnoreSlowDbConnections">
+      <ignoreDs id="66dfac32-f900-4161-90cf-00fefb4685f4" />
+    </option>
   </component>
 </project>
