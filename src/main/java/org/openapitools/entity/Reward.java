@@ -2,12 +2,12 @@ package org.openapitools.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.openapitools.common.enumeration.RewardType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -15,33 +15,40 @@ import javax.validation.constraints.NotNull;
 @Table(name = "reward")
 public class Reward {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
     @NotNull
-    @Column(name = "addr_id", nullable = false)
-    private Long addrId;
+    @Column(name = "amount", nullable = false, precision = 20)
+    private BigDecimal amount;
+
+    @NotNull
+    @Column(name = "earned_epoch", nullable = false)
+    private Long earnedEpoch;
 
     @NotNull
     @Column(name = "spendable_epoch", nullable = false)
     private Long spendableEpoch;
 
     @NotNull
-    @Column(name = "earned_epoch", nullable = false)
-    private Long earnedEpoch;
+    @Column(name = "addr_id", nullable = false)
+    private Long addrId;
+
     @Column(name = "pool_id")
     private Long poolId;
 
-/*
-    TODO [JPA Buddy] create field to map the 'type' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "type", columnDefinition = "rewardtype not null")
-    private Object type;
-*/
-/*
-    TODO [JPA Buddy] create field to map the 'amount' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "amount", columnDefinition = "lovelace(20) not null")
-    private Object amount;
-*/
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
+    private RewardType type;
+
 }

@@ -1,44 +1,45 @@
-////package org.openapitools.repository;
-////
-////import lombok.NoArgsConstructor;
-////import lombok.extern.slf4j.Slf4j;
-////import org.openapitools.projection.BlockProjection;
-////import org.openapitools.model.BlockIdentifier;
-////import org.openapitools.projection.GenesisBlockProjection;
-////import org.openapitools.utils.Formatters;
-////import org.springframework.stereotype.Component;
-////
-////import javax.persistence.EntityManager;
-////import javax.persistence.PersistenceContext;
-////import javax.persistence.Query;
-////import java.sql.Timestamp;
-////import java.util.ArrayList;
-////import java.util.List;
-////
-////import static org.openapitools.utils.Formatters.hexFormatter;
-////
-////@Slf4j
-////@Component
-////@NoArgsConstructor
-////public class BlockChainRepository {
-////    @PersistenceContext
-////    private EntityManager entityManager;
-////    public GenesisBlockProjection findGenesisBlock(){
-////
-////        log.debug("[findGenesisBlock] About to run findGenesisBlock query");
-////        Query query = entityManager.createNativeQuery(BlockChainQueries.findGenesisBlock, BlockIdentifier.class);
-////        List<BlockIdentifier> result = query.getResultList();
-////        if (result.size() == 1) {
-////            log.debug("[findGenesisBlock] Genesis block was found");
-////            BlockIdentifier genesisBlock = result.get(0);
-////            genesisBlock.setHash(hexFormatter(genesisBlock.getHash()));
-////            return new GenesisBlockProjection(genesisBlock.getHash(), genesisBlock.getIndex());
-////        } else {
-////            log.debug("[findGenesisBlock] Genesis block was not found");
-////            return null;
-////        }
-////    }
-//
+package org.openapitools.repository;
+
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.openapitools.projection.BlockProjection;
+import org.openapitools.model.BlockIdentifier;
+import org.openapitools.projection.GenesisBlockProjection;
+import org.openapitools.utils.BlockChainQueries;
+import org.openapitools.utils.Formatters;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.openapitools.utils.Formatters.hexFormatter;
+
+@Slf4j
+@Component
+@NoArgsConstructor
+public class BlockChainRepository {
+    @PersistenceContext
+    private EntityManager entityManager;
+    public GenesisBlockProjection findGenesisBlock(){
+
+        log.debug("[findGenesisBlock] About to run findGenesisBlock query");
+        Query query = entityManager.createNativeQuery(BlockChainQueries.findGenesisBlock, BlockIdentifier.class);
+        List<BlockIdentifier> result = query.getResultList();
+        if (result.size() == 1) {
+            log.debug("[findGenesisBlock] Genesis block was found");
+            BlockIdentifier genesisBlock = result.get(0);
+            genesisBlock.setHash(hexFormatter(genesisBlock.getHash()));
+            return null;
+        } else {
+            log.debug("[findGenesisBlock] Genesis block was not found");
+            return null;
+        }
+    }
+
 //    public BlockProjection findBlock(Integer blockNumber, String blockHash) {
 //        String queryString = BlockChainQueries.findBlock(blockNumber, blockHash);
 //        log.debug("[findBlock] Parameters received for run query blockNumber: " + blockNumber + ", blockHash: " + blockHash);
@@ -77,12 +78,12 @@
 //            return null;
 //        }
 //    }
-//
-//    public Integer findLatestBlockNumber() {
-//        log.debug("[findLatestBlockNumber] About to run findLatestBlockNumber query");
-//        Query query = entityManager.createNativeQuery(BlockChainQueries.findLatestBlockNumber);
-//        Integer latestBlockNumber = (Integer) query.getResultList().get(0);
-//        log.debug("[findLatestBlockNumber] Latest block number is " + latestBlockNumber);
-//        return latestBlockNumber;
-//    }
-//}
+
+    public Integer findLatestBlockNumber() {
+        log.debug("[findLatestBlockNumber] About to run findLatestBlockNumber query");
+        Query query = entityManager.createNativeQuery(BlockChainQueries.findLatestBlockNumber);
+        Integer latestBlockNumber = (Integer) query.getResultList().get(0);
+        log.debug("[findLatestBlockNumber] Latest block number is " + latestBlockNumber);
+        return latestBlockNumber;
+    }
+}

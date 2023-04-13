@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 
 @Getter
 @Setter
@@ -15,17 +16,22 @@ public class SlotLeader {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "pool_hash_id")
-    private Long poolHashId;
     @NotNull
     @Lob
     @Column(name = "description", nullable = false)
     private String description;
 
-/*
-    TODO [JPA Buddy] create field to map the 'hash' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "hash", columnDefinition = "hash28type not null")
-    private Object hash;
-*/
+    @NotNull
+    @Column(name = "hash", nullable = false)
+    private byte[] hash;
+
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
 }

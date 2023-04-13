@@ -2,6 +2,16 @@
 <project version="4">
   <component name="JpaPluginProjectSettings">
     <option name="entityNameTemplate" />
+    <option name="scaffoldingLanguage" value="Java" />
     <option name="lastSelectedLanguage" value="Java" />
+  </component>
+  <component name="ReverseEngineeringSettings">
+    <database-infos>
+      <database-info dbms-id="postgres">
+        <mapping-types>
+          <mapping-type sql-type="jsonb" java-class="java.lang.String" />
+        </mapping-types>
+      </database-info>
+    </database-infos>
   </component>
 </project>
