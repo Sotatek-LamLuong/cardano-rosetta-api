@@ -51,9 +51,8 @@ public class ConstructionDeriveResponse {
     this.address = address;
   }
 
-  public ConstructionDeriveResponse accountIdentifier(AccountIdentifier accountIdentifier) {
+  public ConstructionDeriveResponse(AccountIdentifier accountIdentifier) {
     this.accountIdentifier = accountIdentifier;
-    return this;
   }
 
   /**

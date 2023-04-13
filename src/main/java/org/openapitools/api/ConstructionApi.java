@@ -123,15 +123,10 @@ public interface ConstructionApi {
             })
         }
     )
-    @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/construction/derive",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
+
     default ResponseEntity<ConstructionDeriveResponse> constructionDerive(
         @Parameter(name = "ConstructionDeriveRequest", description = "", required = true) @Valid @RequestBody ConstructionDeriveRequest constructionDeriveRequest
-    ) {
+    ) throws IllegalAccessException {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

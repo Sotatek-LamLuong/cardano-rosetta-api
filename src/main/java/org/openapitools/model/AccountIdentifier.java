@@ -33,9 +33,8 @@ public class AccountIdentifier {
   @JsonProperty("metadata")
   private AccountIdentifierMetadata metadata;
 
-  public AccountIdentifier address(String address) {
+  public AccountIdentifier(String address) {
     this.address = address;
-    return this;
   }
 
   /**
