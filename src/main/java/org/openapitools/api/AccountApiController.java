@@ -25,7 +25,7 @@ import javax.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-21T15:54:41.273447600+07:00[Asia/Bangkok]")
 @Controller
-@RequestMapping("${openapi.rosetta.base-path:}")
+@RequestMapping("${openapi.rosetta.base-path:}/api/v1/accounts")
 public class AccountApiController implements AccountApi {
 
     private final NativeWebRequest request;
@@ -40,20 +40,6 @@ public class AccountApiController implements AccountApi {
         return Optional.ofNullable(request);
     }
 
-    @Operation(
-            operationId = "accountBalance",
-            summary = "Get an Account's Balance",
-            description = "Get an array of all AccountBalances for an AccountIdentifier and the BlockIdentifier at which the balance lookup was performed. The BlockIdentifier must always be returned because some consumers of account balance data need to know specifically at which block the balance was calculated to compare balances they compute from operations with the balance returned by the node. It is important to note that making a balance request for an account without populating the SubAccountIdentifier should not result in the balance of all possible SubAccountIdentifiers being returned. Rather, it should result in the balance pertaining to no SubAccountIdentifiers being returned (sometimes called the liquid balance). To get all balances associated with an account, it may be necessary to perform multiple balance requests with unique AccountIdentifiers. It is also possible to perform a historical balance lookup (if the server supports it) by passing in an optional BlockIdentifier.",
-            tags = { "Account" },
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Expected response to a valid request", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = AccountBalanceResponse.class))
-                    }),
-                    @ApiResponse(responseCode = "500", description = "unexpected error", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-                    })
-            }
-    )
     @RequestMapping(
             method = RequestMethod.POST,
             value = "/account/balance",

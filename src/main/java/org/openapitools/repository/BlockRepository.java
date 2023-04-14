@@ -16,7 +16,7 @@ public interface BlockRepository extends JpaRepository<Block, Long> {
             "SELECT hash as hash, blockNo as index " +
             "FROM Block " +
             "WHERE previousId IS NULL",
-            countQuery = "SELECT count(hash) FROM Block WHERE previous IS NULL")
+            countQuery = "SELECT count(hash) FROM Block WHERE previousId IS NULL")
     Page<GenesisBlockProjection> findGenesisBlock(Pageable pageable);
     @Query("SELECT " +
             "b.hash AS hash, " +
